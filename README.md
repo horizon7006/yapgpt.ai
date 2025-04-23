@@ -7,5 +7,12 @@ an ai that litreally yaps a lot
 - [Usage](#usage)
 - [Contributing](#contributing)
 - [License](#license)
+- ## Installation
+To get this project up and running on your local machine:
+
+1. Clone the repo
+   ```bash
+   git clone https://github.com/username/repo-name.git
+
 
 
