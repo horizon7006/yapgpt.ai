@@ -12,7 +12,7 @@ To get this project up and running on your local machine:
 
 1. Clone the repo
    ```bash
-   git clone https://github.com/username/repo-name.git
+   git clone https://github.com/username/yapgpt.ai.git
 
 
 
