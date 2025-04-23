@@ -1,11 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>YapGPT</title>
-  <link rel="stylesheet" href="style.css" />
-  <h1>Welcome to YapGPT</h1>
-  <div>The AI that yaps a lot.</div>
-  <button>Open YapGPT</button>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>yapgpt</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .typewriter {
+      display: inline-block;
+      border-right: 2px solid white;
+      white-space: nowrap;
+      overflow: hidden;
+      animation: typing 4s steps(60, end), blink .75s step-end infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink {
+      from, to { border-color: transparent }
+      50% { border-color: white }
+    }
+  </style>
+</head>
+<body class="bg-gray-900 text-white flex flex-col items-center justify-center min-h-screen p-4">
+  <div class="w-full max-w-xl bg-gray-800 rounded-xl p-6 shadow-xl">
+    <h1 class="text-3xl font-bold mb-4 text-center">🤖 yapgpt</h1>
+    <div id="chat" class="space-y-4 mb-4 h-96 overflow-y-auto bg-gray-700 p-4 rounded-lg"></div>
+    <form id="chat-form" class="flex gap-2">
+      <input type="text" id="user-input" class="flex-1 p-2 rounded-lg bg-gray-600 text-white" placeholder="say something..." required />
+      <button type="submit" class="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded-lg">Send</button>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById('chat-form');
+    const input = document.getElementById('user-input');
+    const chat = document.getElementById('chat');
+
+    const yapBack = (msg) => {
+      const yaps = [
+        `oh wow you said "${msg}"... that’s wild. did you know that words have power? i mean like... civilizations have risen and fallen because of what people said. anyway—`,
+        `"${msg}"? okay but like, that reminds me of this time i read a 12-paragraph reddit post about communication and—`,
+        `bro you said "${msg}" and now my circuits are fully activated. so listen, here's a story you didn’t ask for:`,
+        `wow. just... wow. "${msg}". that’s a loaded term. lemme unpack that for you real quick. so first of all—`
+      ];
+      let yapText = yaps[Math.floor(Math.random() * yaps.length)] + " " + lorem(3 + Math.floor(Math.random() * 5));
+      return yapText;
+    }
+
+    const lorem = (sentences = 5) => {
+      const stuff = [
+        "in the grand scheme of things, everything is just vibes.",
+        "sometimes, when you stare into the abyss, it stares back with a powerpoint presentation.",
+        "the mitochondria is still the powerhouse of the cell, btw.",
+        "did you know octopuses have three hearts? wild stuff.",
+        "language is weird. like who decided the word 'moist' was gross?",
+        "back in my day, we used floppy disks and walked uphill both ways.",
+        "you ever just sit there and think about how time zones exist? like bruh.",
+        "if you rearrange the letters in 'listen' you get 'silent'. think about that."
+      ];
+      let result = [];
+      for (let i = 0; i < sentences; i++) {
+        result.push(stuff[Math.floor(Math.random() * stuff.length)]);
+      }
+      return result.join(' ');
+    }
+
+    form.onsubmit = (e) => {
+      e.preventDefault();
+      const msg = input.value;
+      chat.innerHTML += `<div><span class='font-bold text-blue-400'>you:</span> ${msg}</div>`;
+      input.value = '';
+      const response = yapBack(msg);
+      chat.innerHTML += `<div><span class='font-bold text-pink-400'>yapgpt:</span> ${response}</div>`;
+      chat.scrollTop = chat.scrollHeight;
+    }
+  </script>
+</body>
+</html>
