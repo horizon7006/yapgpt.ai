@@ -12,10 +12,12 @@ To get this project up and running on your local machine:
 
 1. Clone the repo
    ```bash
-   git clone https://github.com/username/yapgpt.ai.git
+   git clone https://github.com/username/yapgpt.ai.git 
+   
    2. Install dependencies
+   ```bash
 
-npm install
+npm install 
 
 Run the app
 
